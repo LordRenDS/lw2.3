@@ -1,0 +1,17 @@
+{
+    "name": "ren/ajax",
+    "description": "it project",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Ren\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ren"
+        }
+    ],
+    "require": {
+    }
+}

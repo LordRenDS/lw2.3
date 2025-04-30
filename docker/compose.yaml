@@ -1,0 +1,44 @@
+name: it
+services:
+  php:
+    build:
+      context: ..
+      dockerfile: docker/php-it.Dockerfile
+    volumes:
+      - type: bind
+        source: ..
+        target: /mnt/programing/php
+      - type: volume
+        source: php-vscode-server
+        target: /root/.vscode-server
+    working_dir: /mnt/programing/php
+    ports:
+      - 127.0.0.1:8080:80
+    command: php -S 0.0.0.0:80 -t ./src/public
+    env_file:
+      - ../.env
+    depends_on:
+      - db
+    # tty: true
+    # stdin_open: true
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root2025
+      MYSQL_DATABASE: it
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user2025
+    ports:
+      - 127.0.0.1:3306:3306
+    volumes:
+      - type: bind
+        source: ../database
+        target: /var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 127.0.0.1:8081:80
+    depends_on:
+      - db
+volumes:
+  php-vscode-server:
