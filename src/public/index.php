@@ -57,8 +57,7 @@ $ceos = $pdo->query("SELECT chief FROM department")->fetchAll();
                     <label for="date">Date:</label>
                     <input type="date" name="date" id="date" min="2000-01-01" value="2019-04-15">
                 </div>
-                <input type="button" value="Submit" onclick="XHR(document.getElementById('projects-f'),
-                'http://localhost:8080/query/project.php', plainText)">
+                <input type="button" value="Submit" onclick="createScript()">
             </fieldset>
         </form>
         <form id="project-time-f">
@@ -72,8 +71,9 @@ $ceos = $pdo->query("SELECT chief FROM department")->fetchAll();
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <input type="button" value="Submit" onclick="XHR(document.getElementById('project-time-f'),
-                'http://localhost:8080/query/project_time.php', xml)">
+                <!-- <input type="button" value="Submit" onclick="XHR(document.getElementById('project-time-f'),
+                'http://localhost:8080/query/project_time.php', xml)"> -->
+                <input type="button" value="Submit" onclick="createScript()">
             </fieldset>
         </form>
         <form id="worker-cnt-f">

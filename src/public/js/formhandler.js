@@ -7,6 +7,13 @@ function plainText(xhr) {
     output_el.innerHTML = xhr.responseText;
 };
 
+function appentTextTo(json){
+    // console.log(json);
+    // console.log(json[0]);
+    // output_el.innerHTML = JSON.st(json[0]);
+    printObj(json, output_el);
+}
+
 function xml(xhr) {
     let root = xhr.responseXML.getElementsByTagName("response").item(0);
     let rows = root.children
@@ -46,6 +53,21 @@ function XHR(html_form_el, uri, onload) {
     xhr.onload = () => { onload(xhr) };
     xhr.open("POST", uri);
     xhr.send(new FormData(html_form_el));
+}
+
+function createScript() {
+    // let fd = new FormData(html_form_el);
+    // let xhr = new XMLHttpRequest();
+    // xhr.onload = () => { onload(xhr) };
+    // xhr.open("GET", "http://localhost:8080/query/project.php?callback=plainText&"
+    //     + "date" + fd.get("date").valueOf() + "&"
+    //     + "project" + fd.get("project").valueOf());
+
+    let jsonp = document.createElement("script");
+    jsonp.src = "http://localhost:8080/query/project.php?callback=appentTextTo&"
+        + "date=2019-04-15" + "&"
+        + "project=Project_2Bank";
+    document.getElementsByTagName("body").item(0).appendChild(jsonp);
 }
 
 function printObj(json_obj, html_p) {
